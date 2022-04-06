@@ -1,0 +1,65 @@
+{% extends "jogos/layout_base/base.html" %}
+{% load static %}
+
+{% block conteudo %}
+
+<div class="container" >
+  <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4" >
+    {% if msg %} {{msg}} {%endif%}
+    <div id="alerta"></div>
+    <form method="POST" >
+     
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group col-12 ">
+          <label class="label-form">{{ field.label }}</label>
+          {{ field }}
+        </div>
+        {% endfor %}
+        <br>
+        <input type="submit" value="Adicionar" class="btn"/>
+        
+      <form>
+        <a href="{% url 'jogos:home' %}">Voltar</a>
+  </div> <!-- end col -->
+  <div class="col-md-4"></div>
+  </div>
+</div> <!-- end container -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+
+<script>
+   
+  $(document).ready(function () {
+      
+   const alertBox = document.getElementById('alerta')
+   $("#form").submit(function (e) {
+           e.preventDefault();
+           
+           var serializedData = $(this).serialize();
+           $.ajax({
+               type: 'POST',
+               url: "{% url 'jogos:add_jogador' %}",
+               data: serializedData,
+               success: function (response) {
+                //
+                alertBox.innerHTML = `<div class="alert alert-sucess alert-dismissible fade show" role="alert">
+                  <strong>Salvo</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close"></button></div>`
+               }
+                   
+               },
+               error: function (response) {
+                   alertBox.innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                         <strong>Erro...</strong> erro..!.
+                                         <button type="button" class="btn-close" data-bs-dismiss="alert"aria-label="Close"></button></div>`
+                                      }
+           })
+       })
+
+   })
+
+</script>
+
+{% endblock conteudo %}

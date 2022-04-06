@@ -1,0 +1,52 @@
+    {% load static  %}
+	<!DOCTYPE html>
+        <html lang="pt-br" dir="ltr">
+          <head>
+			<meta charset="UTF-8">
+
+            <title>{% block title %}dms{% endblock %}</title>
+                 
+            <link rel="stylesheet" type="text/css" href="{% static 'css/linearicons.css' %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css'  %}">
+            <link rel="stylesheet" type="text/css" href="{% static 'bs5/css/bootstrap.css' %}">
+			<link rel="stylesheet" type="text/css" href="{% static 'css/stylo.css'  %}">
+		
+    
+        </head>
+		
+        <body>
+
+		<header>
+		
+			<h1></h1>
+		    
+        </header>
+         
+      
+	   <!-- Conteúdo do site -->
+	   <div class="center" >
+		
+		   
+		   {% block conteudo %}
+           
+           {% endblock %}  
+
+			 
+	   </div>
+
+        <footer>
+            <div class="container">
+                <h1></h1>
+		
+			</div><!--  end container -->
+        </footer>
+	   
+	   <script type="text/javascript"  src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+	   <script type="text/javascript"  src="{% static 'js/popper-3.3.1.min.js' %}"></script>
+ 
+	   <script type="text/javascript"  src="{% static 'bs5/js/bootstrap.js' %}"></script>
+	   <script type="text/javascript"  src="{% static 'js/script.js' %}" charset="utf-8"></script>
+	 
+
+	</body>
+  </html>
